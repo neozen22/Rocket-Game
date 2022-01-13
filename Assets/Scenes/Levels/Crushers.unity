@@ -406,8 +406,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614728737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.76, y: 3.94, z: -1.02}
-  m_LocalScale: {x: 8.270432, y: 8.270432, z: 8.270432}
+  m_LocalPosition: {x: -16.76, y: 9.88, z: 0}
+  m_LocalScale: {x: 8.270432, y: 24.371311, z: 8.270432}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -425,9 +425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2a1c6912cba3b4fa6f579d8d1a0c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endCoords: {x: 50, y: 50, z: 50}
-  comingSpeed: 1
-  goingSpeed: 0.5
+  endCoords: {x: 50, y: 50, z: 30}
+  comingSpeed: 150
+  goingSpeed: 50
   activeIndex: 2
 --- !u!4 &680655088 stripped
 Transform:
@@ -824,7 +824,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0351326, y: 1}
+    m_SensorSize: {x: 2.0316508, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

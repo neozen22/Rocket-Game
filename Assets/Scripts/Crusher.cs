@@ -27,24 +27,26 @@ public class Crusher : MonoBehaviour
     void Start()
     {
         startingCoords = transform.position;
-        comingVector[activeIndex] = comingSpeed;
-        goingVector[activeIndex] = goingSpeed;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if the object 
+        comingVector[activeIndex] = comingSpeed * Time.deltaTime;
+        goingVector[activeIndex] = goingSpeed * Time.deltaTime;
+        // if the object hasn't reached its initial position yet
         if (transform.position[activeIndex] <= startingCoords[activeIndex])
         {
             coming = false;
         }
+        // if the object has reached has reached its final destination and it has to come back
         else if (transform.position[activeIndex] >= endCoords[activeIndex])
         {
             coming = true;
         }
 
-        
+        // idk why but if I replace the boolean with the original if statement it doesn't work
         if (coming)
         {
             transform.position -= (comingVector);
@@ -54,11 +56,12 @@ public class Crusher : MonoBehaviour
             transform.position += (goingVector);
             
         }
+        // Else statement if I fucked something up (I probably did)
         else
         {
             Debug.LogError("Crusher object out of bounds");
             transform.position = startingCoords;
-            return;
+            
         }
     }
 }
