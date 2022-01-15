@@ -16,24 +16,30 @@ public class Crusher : MonoBehaviour
     [SerializeField] float goingSpeed; //Speed of object when it goes away (usually slower)
     [SerializeField] [Range(0,2)] int activeIndex; // 0 = x, 1 = y, 2 = z
 
+
+    [SerializeField] float increasingSpeed = 0;
+
     //initialize starting coordinates to set them as the starting position of object
     Vector3 startingCoords;
-
+    int secondsToWait = 2;
     //to determine whether the object is coming or going
     bool coming;
+    float speedUp;
 
-
+    float increasingYAxis = 0;
 
     void Start()
     {
         startingCoords = transform.position;
+        speedUp = 0f;
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        comingVector[activeIndex] = comingSpeed * Time.deltaTime;
+        
         goingVector[activeIndex] = goingSpeed * Time.deltaTime;
         // if the object hasn't reached its initial position yet
         if (transform.position[activeIndex] <= startingCoords[activeIndex])
@@ -49,12 +55,13 @@ public class Crusher : MonoBehaviour
         // idk why but if I replace the boolean with the original if statement it doesn't work
         if (coming)
         {
-            transform.position -= (comingVector);
+            ComeBack();
         }
         else if (!coming)
         {
-            transform.position += (goingVector);
             
+            GoAway();
+
         }
         // Else statement if I fucked something up (I probably did)
         else
@@ -64,4 +71,21 @@ public class Crusher : MonoBehaviour
             
         }
     }
+
+    void GoAway()
+    {
+        
+        transform.position += (goingVector);
+        speedUp = 0;
+    }
+
+    void ComeBack()
+    {
+        
+        comingSpeed = Mathf.Pow((speedUp * Time.deltaTime), 2);
+        comingVector[activeIndex] = comingSpeed;
+        transform.position -= (comingVector);
+        speedUp += increasingSpeed;
+    }
+
 }
